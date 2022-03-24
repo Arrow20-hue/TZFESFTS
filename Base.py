@@ -21,19 +21,23 @@ def hcf(x, y):
 
 
 
-A = 6  # 可以修改
-B = 60  #也可以修改
+A = 4  # 可以修改
+B = 100  #也可以修改
 C = 2  #还是可以修改
-mode = 2      #可以修改，但是会影响游戏玩法
-adding = [2,3,5,7]  #这个又双叒叕可以修改
-Font = 'Exo-Regular-webfont.ttf'
+mode = 0      #可以修改，但是会影响游戏玩法
+adding = [2,2,2,2,4]  #这个又双叒叕可以修改
+Font = 'ARLRDBD.TTF'
 
 
 
 
 pygame.init()
 
-def make_color(h,s,v):
+def make_color(H,s,v):
+    h = H
+    if H < 0:
+        while h < 0:
+            h += 360
     if s == 0:
         return (v,v,v)
     else:
@@ -77,7 +81,7 @@ main_tile2 = [None for i in range(A**2)]
 
 score=0
 
-f = pygame.font.Font(Font,B//2)
+f = pygame.font.Font(Font,40)
 
 
 
@@ -193,12 +197,18 @@ while 1:
     for a in range(A**2):
         
         if main[a] != '-':
-            main_tile[a] = pygame.draw.rect(sc, made(make_color(5*abs(main[a]),1,1)), pygame.Rect(B*(a % A), math.floor(a/A)*B, B, B), 0)
-            sc.blit(f.render(str(main[a]), False, (0, 0, 0)), (B*(a % A), math.floor(a/A)*B))
-            main_tile2[a] = None
+            main_tile[a] = pygame.draw.rect(sc, made(make_color(5*main[a],1,1)), pygame.Rect(B*(a % A), math.floor(a/A)*B, B, B), 0)
+            
+            main_tile2[a] = pygame.draw.rect(sc, made(make_color(5*main[a], 1, 0.9)), pygame.Rect(B*(a % A), math.floor(a/A)*B, B, B), B//25)
+            
         else:
             main_tile[a] = pygame.draw.rect(sc, (100, 100, 100), pygame.Rect(B*(a % A), math.floor(a/A)*B, B, B), 0)
             main_tile2[a] = pygame.draw.rect(sc, (200, 200, 200), pygame.Rect(B*(a % A), math.floor(a/A)*B, B, B), 2)
+    
+    for a in range(A**2):
+        if main[a] != '-':
+            sc.blit(f.render(str(main[a]), False,(0, 0, 0)), (B*(a % A), math.floor(a/A)*B))
+
     sc.blit(f.render('Your score is ' + str(score),False ,(0,0,0)),(0,A*B))
     
     pygame.display.update()
