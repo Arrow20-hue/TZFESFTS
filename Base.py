@@ -26,6 +26,9 @@ B = 60  #也可以修改
 C = 2  #还是可以修改
 mode = 2      #可以修改，但是会影响游戏玩法
 adding = [2,3,5,7]  #这个又双叒叕可以修改
+Font = 'Exo-Regular-webfont.ttf'
+
+
 
 
 pygame.init()
@@ -74,7 +77,7 @@ main_tile2 = [None for i in range(A**2)]
 
 score=0
 
-f = pygame.font.Font('Exo-Regular-webfont.ttf',B//2)
+f = pygame.font.Font(Font,B//2)
 
 
 
