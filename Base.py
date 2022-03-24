@@ -87,7 +87,7 @@ f = pygame.font.Font(Font,B//2)
 
 def add():
     global main
-    t = 1
+    t = random.randint(0, A**2-1)
     if '-' in main:
         while main[t] != '-':
             t = random.randint(0,A**2-1)
